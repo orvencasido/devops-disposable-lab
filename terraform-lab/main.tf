@@ -2,16 +2,25 @@ provider "aws" {
   region = "ap-southeast-1"
 }
 
-# Security Group (ALLOW SSH)
+# Security Group (ALLOW SSH + PORT 3000)
 resource "aws_security_group" "ssh" {
   name        = "allow-ssh"
-  description = "Allow SSH access"
+  description = "Allow SSH access and app port 3000"
 
+  # SSH
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] 
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # Application (Port 3000)
+  ingress {
+    from_port   = 3000
+    to_port     = 3000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {

@@ -1,5 +1,7 @@
 #/bin/bash
 
+set -e
+
 #Update
 sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
 
