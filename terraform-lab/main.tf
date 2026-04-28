@@ -29,7 +29,7 @@ resource "aws_security_group" "ssh" {
   }
 }
 
-# SPOT EC2 INSTANCE
+# SPOT EC2 INSTANCE UBUNTU
 resource "aws_instance" "test" {
   ami           = "ami-02dd44faa40720bb8"
   instance_type = "t2.micro"

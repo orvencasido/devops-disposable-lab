@@ -4,7 +4,7 @@ set -e
 
 cd /home/ubuntu
 
-git clone https://github.com/juice-shop/juice-shop.git
+git clone https://github.com/orvencasido/juice-shop.git
 
 cd juice-shop
 
