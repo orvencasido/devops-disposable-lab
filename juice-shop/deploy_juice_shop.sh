@@ -8,4 +8,4 @@ git clone https://github.com/juice-shop/juice-shop.git
 
 cd juice-shop
 
-docker compose -f docker-compose.test.yml up -d
+sudo docker compose -f docker-compose.test.yml up -d

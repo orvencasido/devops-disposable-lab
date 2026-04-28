@@ -38,13 +38,11 @@ resource "aws_instance" "test" {
 
   vpc_security_group_ids = [aws_security_group.ssh.id]
 
-  # 👇 THIS IS THE SPOT CONFIG
   instance_market_options {
     market_type = "spot"
 
     spot_options {
-      instance_interruption_behavior = "stop"
-      max_price                      = "0.005"  # optional cap
+      instance_interruption_behavior = "terminate"
     }
   }
 
