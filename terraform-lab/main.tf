@@ -7,7 +7,6 @@ resource "aws_security_group" "ssh" {
   name        = "allow-ssh"
   description = "Allow SSH access and app port 3000"
 
-  # SSH
   ingress {
     from_port   = 22
     to_port     = 22
@@ -15,7 +14,6 @@ resource "aws_security_group" "ssh" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  # Application (Port 3000)
   ingress {
     from_port   = 3000
     to_port     = 3000
@@ -31,7 +29,7 @@ resource "aws_security_group" "ssh" {
   }
 }
 
-# EC2 Instance
+# SPOT EC2 INSTANCE
 resource "aws_instance" "test" {
   ami           = "ami-02dd44faa40720bb8"
   instance_type = "t2.micro"
@@ -40,8 +38,18 @@ resource "aws_instance" "test" {
 
   vpc_security_group_ids = [aws_security_group.ssh.id]
 
+  # 👇 THIS IS THE SPOT CONFIG
+  instance_market_options {
+    market_type = "spot"
+
+    spot_options {
+      instance_interruption_behavior = "stop"
+      max_price                      = "0.005"  # optional cap
+    }
+  }
+
   tags = {
-    Name = "terraform-test"
+    Name = "terraform-spot-test"
   }
 }
 
@@ -50,7 +58,6 @@ output "instance_ip" {
   value = aws_instance.test.public_ip
 }
 
-# OPTIONAL: ready SSH command
 output "ssh_command" {
   value = "ssh -i n8n.pem ubuntu@${aws_instance.test.public_ip}"
 }
