@@ -32,7 +32,7 @@ resource "aws_security_group" "ssh" {
 # SPOT EC2 INSTANCE UBUNTU
 resource "aws_instance" "test" {
   ami           = "ami-02dd44faa40720bb8"
-  instance_type = "t3.large"
+  instance_type = "t3.medium"
 
   key_name = "n8n"
 
