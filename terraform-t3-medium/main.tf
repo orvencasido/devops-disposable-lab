@@ -47,7 +47,7 @@ resource "aws_instance" "test" {
   }
 
   tags = {
-    Name = "terraform-spot-test"
+    Name = "terraform-spot-t3-medium"
   }
 }
 
