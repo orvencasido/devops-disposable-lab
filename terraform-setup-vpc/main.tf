@@ -4,7 +4,7 @@ resource "aws_vpc" "main" {
   enable_dns_support   = true
 
   tags = {
-    Name = "main-vpc"
+    Name = "vpc-terraform"
   }
 }
 
@@ -14,7 +14,7 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "public-subnet"
+    Name = "vpc-terraform-subnet"
   }
 }
 
@@ -22,7 +22,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "main-igw"
+    Name = "vpc-terraform-internet-gateway"
   }
 }
 
@@ -35,7 +35,7 @@ resource "aws_route_table" "public_rt" {
   }
 
   tags = {
-    Name = "public-route-table"
+    Name = "vpc-terraform-route-table"
   }
 }
 
